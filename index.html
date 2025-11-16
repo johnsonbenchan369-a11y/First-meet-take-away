@@ -5,11 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>阿明外賣自取</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
-    .menu-item { background: white; margin: 10px 0; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    button { background: #ff5733; color: white; padding: 12px; border: none; border-radius: 8px; width: 100%; font-size: 18px; margin-top: 20px; }
-    #order-summary { background: #fff3cd; padding: 15px; border-radius: 10px; margin-top: 20px; display: none; }
-  </style>
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+}
+h1 {
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 10px;
+}
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+.menu-item {
+    background: white;
+    margin-bottom: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #e74c3c;
+    transition: all 0.3s ease;
+}
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.menu-item strong {
+    font-size: 16px;
+    color: #2c3e50;
+}
+.price {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 16px;
+    white-space: nowrap;
+}
+button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+}
+button:hover {
+    background: #c0392b;
+}
+#order-summary {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+#phone {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+</style>
 </head>
 <body>
   <h1>🍴 阿明外賣自取</h1>
