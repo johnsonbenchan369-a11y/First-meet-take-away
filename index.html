@@ -4,220 +4,324 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>初見小廚-外賣自取</title>
-<style>
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    color: #333;
-}
-h1 {
-    color: #e74c3c;
-    text-align: center;
-    margin-bottom: 10px;
-}
-p {
-    text-align: center;
-    color: #666;
-    margin-bottom: 30px;
-}
-.store-info {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    text-align: center;
-}
-.menu-category {
-    margin-bottom: 25px;
-}
-.category-title {
-    background: #e74c3c;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-.menu-item {
-    background: white;
-    margin-bottom: 12px;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 4px solid #e74c3c;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.menu-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.menu-item strong {
-    font-size: 16px;
-    color: #2c3e50;
-}
-.price {
-    font-weight: bold;
-    color: #e74c3c;
-    font-size: 16px;
-    white-space: nowrap;
-}
-button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 20px;
-    transition: background 0.3s ease;
-}
-button:hover {
-    background: #c0392b;
-}
-#order-summary {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 30px;
-    display: none;
-}
-#phone {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-.remove-btn {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 2px 8px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 10px;
-}
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.quantity-btn {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      color: #e74c3c;
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    .store-info {
+      background: #f8f9fa;
+      padding: 18px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      border-left: 5px solid #e74c3c;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .store-info p {
+      margin: 8px 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .menu-category {
+      margin-bottom: 30px;
+    }
+    
+    .category-title {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    }
+    
+    .menu-item {
+      background: white;
+      margin-bottom: 12px;
+      padding: 18px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid #f1f1f1;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.25);
+      border-color: #e74c3c;
+    }
+    
+    .menu-item strong {
+      font-size: 16px;
+      color: #2c3e50;
+      flex: 1;
+    }
+    
+    .price {
+      font-weight: bold;
+      color: #e74c3c;
+      font-size: 17px;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+    
+    #order-summary {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin-top: 25px;
+      display: none;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    #phone {
+      width: 100%;
+      padding: 14px;
+      margin: 18px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 15px;
+    }
+    
+    .quantity-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+    
+    .quantity-btn:hover {
+      background: #c0392b;
+      transform: scale(1.1);
+    }
+    
+    .remove-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 10px;
+      transition: all 0.2s ease;
+    }
+    
+    .remove-btn:hover {
+      background: #c0392b;
+    }
+    
+    .total-section {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px 0;
+      text-align: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .item-details {
+      flex: 1;
+    }
+    
+    .item-name {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .item-price {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>🍴 初見小廚-外賣自取</h1>
-  <p>掃碼點餐，做好即取！無平台抽成！</p>
+  <div class="container">
+    <h1>🍴 初見小廚-外賣自取</h1>
+    <p class="subtitle">掃碼點餐，做好即取！無平台抽成！</p>
 
-  <div class="store-info">
-    <p><strong>地址：</strong>澳門黑沙環祐漢水字巷6號永利大厦地下B舖</p>
-    <p><strong>外賣熱線：</strong>8388 0338</p>
-    <p><strong>營業時間：</strong>11:00 - 21:00</p>
-  </div>
+    <div class="store-info">
+      <p><strong>📍 地址：</strong>澳門黑沙環祐漢水字巷6號永利大厦地下B舖</p>
+      <p><strong>📞 外賣熱線：</strong>8388 0338</p>
+      <p><strong>🕚 營業時間：</strong>11:00 - 21:00</p>
+    </div>
 
-  <div id="menu">
-    <!-- 飯類 Rice -->
-    <div class="menu-category">
-      <div class="category-title">🍚 飯類 Rice</div>
-      <div class="menu-item" onclick="addToCart('牛腩飯', 45)">
-        <strong>牛腩飯</strong> <span class="price">$45</span>
+    <div id="menu">
+      <!-- 飯類 Rice -->
+      <div class="menu-category">
+        <div class="category-title">🍚 飯類 Rice</div>
+        <div class="menu-item" onclick="addToCart('牛腩飯', 45)">
+          <strong>牛腩飯</strong> <span class="price">$45</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('叉燒飯', 42)">
+          <strong>叉燒飯</strong> <span class="price">$42</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('燒鴨飯', 48)">
+          <strong>燒鴨飯</strong> <span class="price">$48</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('滑蛋蒲燒鰻魚飯', 53)">
+          <strong>滑蛋蒲燒鰻魚飯</strong> <span class="price">$53</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('椰汁咖哩雞扒飯', 45)">
+          <strong>椰汁咖哩雞扒飯</strong> <span class="price">$45</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('芝士焗豬扒飯', 52)">
+          <strong>芝士焗豬扒飯</strong> <span class="price">$52</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('芝士焗雞皇飯', 50)">
+          <strong>芝士焗雞皇飯</strong> <span class="price">$50</span>
+        </div>
       </div>
-      <div class="menu-item" onclick="addToCart('叉燒飯', 42)">
-        <strong>叉燒飯</strong> <span class="price">$42</span>
+
+      <!-- 小食 & 包類 -->
+      <div class="menu-category">
+        <div class="category-title">🍔 小食 & 包類</div>
+        <div class="menu-item" onclick="addToCart('豬扒包', 38)">
+          <strong>豬扒包</strong> <span class="price">$38</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('雞扒包', 36)">
+          <strong>雞扒包</strong> <span class="price">$36</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('炸雞翼（4件）', 28)">
+          <strong>炸雞翼（4件）</strong> <span class="price">$28</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('薯條', 18)">
+          <strong>薯條</strong> <span class="price">$18</span>
+        </div>
       </div>
-      <div class="menu-item" onclick="addToCart('燒鴨飯', 48)">
-        <strong>燒鴨飯</strong> <span class="price">$48</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('滑蛋蒲燒鰻魚飯', 53)">
-        <strong>滑蛋蒲燒鰻魚飯</strong> <span class="price">$53</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('椰汁咖哩雞扒飯', 45)">
-        <strong>椰汁咖哩雞扒飯</strong> <span class="price">$45</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('芝士焗豬扒飯', 52)">
-        <strong>芝士焗豬扒飯</strong> <span class="price">$52</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('芝士焗雞皇飯', 50)">
-        <strong>芝士焗雞皇飯</strong> <span class="price">$50</span>
+
+      <!-- 飲品 -->
+      <div class="menu-category">
+        <div class="category-title">🥤 飲品 Drinks</div>
+        <div class="menu-item" onclick="addToCart('絲襪奶茶', 18)">
+          <strong>絲襪奶茶</strong> <span class="price">$18</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('檸檬茶', 16)">
+          <strong>檸檬茶</strong> <span class="price">$16</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('凍咖啡', 18)">
+          <strong>凍咖啡</strong> <span class="price">$18</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('可樂', 12)">
+          <strong>可樂</strong> <span class="price">$12</span>
+        </div>
+        <div class="menu-item" onclick="addToCart('雪碧', 12)">
+          <strong>雪碧</strong> <span class="price">$12</span>
+        </div>
       </div>
     </div>
 
-    <!-- 小食 & 包類 -->
-    <div class="menu-category">
-      <div class="category-title">🍔 小食 & 包類 Snacks & Buns</div>
-      <div class="menu-item" onclick="addToCart('豬扒包', 38)">
-        <strong>豬扒包</strong> <span class="price">$38</span>
+    <div id="order-summary">
+      <h3 style="text-align: center; margin-bottom: 20px; font-size: 18px;">📋 您的訂單</h3>
+      <div id="cart-items"></div>
+      <div class="total-section">
+        總額：$<span id="total">0</span>
       </div>
-      <div class="menu-item" onclick="addToCart('雞扒包', 36)">
-        <strong>雞扒包</strong> <span class="price">$36</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('炸雞翼（4件）', 28)">
-        <strong>炸雞翼（4件）</strong> <span class="price">$28</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('薯條', 18)">
-        <strong>薯條</strong> <span class="price">$18</span>
-      </div>
+      <input type="tel" id="phone" placeholder="📱 請輸入電話號碼" />
+      <button class="submit-btn" onclick="submitOrder()">
+        ✅ 提交訂單（約10-15分鐘取餐）
+      </button>
     </div>
-
-    <!-- 飲品 -->
-    <div class="menu-category">
-      <div class="category-title">🥤 飲品 Drinks</div>
-      <div class="menu-item" onclick="addToCart('絲襪奶茶', 18)">
-        <strong>絲襪奶茶</strong> <span class="price">$18</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('檸檬茶', 16)">
-        <strong>檸檬茶</strong> <span class="price">$16</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('凍咖啡', 18)">
-        <strong>凍咖啡</strong> <span class="price">$18</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('可樂', 12)">
-        <strong>可樂</strong> <span class="price">$12</span>
-      </div>
-      <div class="menu-item" onclick="addToCart('雪碧', 12)">
-        <strong>雪碧</strong> <span class="price">$12</span>
-      </div>
-    </div>
-  </div>
-
-  <div id="order-summary">
-    <h3>📋 您的訂單</h3>
-    <div id="cart-items"></div>
-    <p><strong>總額：</strong> $<span id="total">0</span></p>
-    <input type="tel" id="phone" placeholder="請輸入電話號碼" />
-    <button onclick="submitOrder()">✅ 提交訂單（約10-15分鐘取餐）</button>
   </div>
 
   <script>
@@ -231,6 +335,13 @@ button:hover {
         cart.push({name, price, quantity: 1});
       }
       updateCart();
+      
+      // 添加點擊反饋
+      const button = event.currentTarget;
+      button.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        button.style.transform = '';
+      }, 150);
     }
     
     function removeFromCart(index) {
@@ -264,14 +375,15 @@ button:hover {
         total += itemTotal;
         itemsHTML += `
           <div class="cart-item">
-            <div>
-              ${item.name} 
-              <span style="font-size: 12px; opacity: 0.8;">×${item.quantity}</span>
+            <div class="item-details">
+              <div class="item-name">${item.name}</div>
+              <div class="item-price">單價: $${item.price}</div>
             </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              $${itemTotal}
+            <div class="cart-actions">
+              <span style="font-weight: bold;">$${itemTotal}</span>
               <div class="quantity-controls">
                 <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                <span style="min-width: 20px; text-align: center;">${item.quantity}</span>
                 <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
               </div>
               <button class="remove-btn" onclick="removeFromCart(${index})">刪除</button>
@@ -287,10 +399,13 @@ button:hover {
     
     function submitOrder() {
       let phone = document.getElementById('phone').value.trim();
+      
       if (!phone) {
         alert('請填寫電話號碼');
+        document.getElementById('phone').focus();
         return;
       }
+      
       if (cart.length === 0) {
         alert('請選擇餐點');
         return;
@@ -304,13 +419,20 @@ button:hover {
         `${item.name} ×${item.quantity} $${item.price * item.quantity}`
       ).join('\n');
       
-      alert(`✅ 訂單提交成功！\n\n📞 電話：${phone}\n🛒 訂單號：${orderNum}\n\n📋 訂單詳情：\n${orderDetails}\n💰 總金額：$${document.getElementById('total').textContent}\n\n⏰ 約10-15分鐘後到店取餐\n📍 地址：澳門黑沙環祐漢水字巷6號永利大厦地下B舖`);
+      const totalAmount = document.getElementById('total').textContent;
+      
+      alert(`✅ 訂單提交成功！\n\n📞 電話：${phone}\n🛒 訂單號：${orderNum}\n\n📋 訂單詳情：\n${orderDetails}\n💰 總金額：$${totalAmount}\n\n⏰ 約10-15分鐘後到店取餐\n📍 地址：澳門黑沙環祐漢水字巷6號永利大厦地下B舖\n📞 查詢電話：8388 0338`);
 
       // 重置購物車
       cart = [];
       updateCart();
       document.getElementById('phone').value = '';
     }
+    
+    // 初始隱藏訂單摘要
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('order-summary').style.display = 'none';
+    });
   </script>
 </body>
 </html>
