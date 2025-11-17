@@ -1,392 +1,159 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>餐廳菜單</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .menu-section { margin-bottom: 30px; }
-        .menu-item { margin: 10px 0; }
-        .price { float: right; font-weight: bold; }
-        .chinese { font-size: 1.1em; }
-        .english { font-size: 0.9em; color: #666; font-style: italic; }
-        .add-ons { background: #f5f5f5; padding: 10px; margin: 10px 0; }
-    </style>
-</head>
-<body>
-    <div class="menu-section">
-        <h2>飯類 Rice</h2>
-        <div class="menu-item">
-            <div class="chinese">滑蛋雞柳飯(可加辣)</div>
-            <div class="english">Fried Egg and Chicken Fillet With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">滑蛋浦燒鰻魚飯</div>
-            <div class="english">Fried Egg and EEL with Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">特盛浦燒鰻魚飯</div>
-            <div class="english">Large Kabayaki EEL with Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">豚肉拌飯(配太陽蛋)</div>
-            <div class="english">Pork Rice Bowl With Egg</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">麻辣豚肉拌飯(配太陽蛋)</div>
-            <div class="english">Sichuan Spicy Pork Rice Bowl With Egg</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/蕃茄)豚肉拌飯(配太陽蛋)</div>
-            <div class="english">(Curry/Tomato ) Pork Rice Bowl with Egg</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">泡菜辣炒豚肉飯</div>
-            <div class="english">Spicy Kimchi Stir-Fried Sliced Pork With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/蕃茄)免治豬肉煎蛋飯</div>
-            <div class="english">(curry/Tomato ) Tomato Minced Pork With Fried Egg Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">黑松露滑蛋蝦仁飯</div>
-            <div class="english">Black Truffle Scrambled Egg and Shrimp Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">滑蛋吉列豬扒飯</div>
-            <div class="english">Scramble Egg Prok Cutlet With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱炸雞飯</div>
-            <div class="english">Curry Fried Chicken With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱吉列豬扒飯</div>
-            <div class="english">Curry Cutlet With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱吉列螺飯</div>
-            <div class="english">Curry Oyster With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/粟米)石斑魚飯</div>
-            <div class="english">Curry / Corn Sauce Grouper Fish Cutlet With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">白汁香草煎雞飯</div>
-            <div class="english">Cream Sauce Pan Fried Chicken FilletWith Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/白汁/粟米)雞翼飯</div>
-            <div class="english">(Curry / Cream Sauce / Corn Sauce ) Chicken Steak With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/白汁/粟米)雞扒飯</div>
-            <div class="english">(Curry / Cream Sauce / Corn Sauce ) Chicken Steak With Rice</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">照燒香煎螺配豚肉飯</div>
-            <div class="english">Stir-Fried Oyster and Sliced Pork with Rice</div>
-        </div>
-    </div>
+# Menu data structure based on the provided menu transcription
+# Categories as keys, lists of items with name (Chinese), english (if provided), and price
 
-    <div class="menu-section">
-        <h2>烏冬類(讚岐烏冬) Udon (Sanuki Udon)</h2>
-        <div class="menu-item">
-            <div class="chinese">咖喱炸雞烏冬</div>
-            <div class="english">Curry Fried Chicken With Udon</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱吉列豬扒烏冬</div>
-            <div class="english">Curry Pork Cutlet With Udon</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱石斑魚烏冬</div>
-            <div class="english">Curry Grouper Cutlet With Udon</div>
-            <div class="price">$49</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱吉列螺烏冬</div>
-            <div class="english">Curry Oyster With Udon</div>
-            <div class="price">$60</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/白汁/燒汁)雞扒烏冬</div>
-            <div class="english">Curry / Cream Sauce / Brown Sauce / Corn Sauce Chicken Wings With Rice</div>
-            <div class="price">$42</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(咖喱/白汁/燒汁)雞翼烏冬</div>
-            <div class="english">Curry / Cream Sauce / Brown Sauce Chicken Wings With Udon</div>
-            <div class="price">$42</div>
-        </div>
-    </div>
+menu = {
+    "飯類 Rice": [
+        {"name": "滑蛋雞柳飯(可加辣)", "english": "Fried Egg and Chicken Fillet With Rice", "price": 38},
+        {"name": "滑蛋浦燒鰻魚飯", "english": "Fried Egg and EEL with Rice", "price": 53},
+        {"name": "特盛浦燒鰻魚飯", "english": "Large Kabayaki EEL with Rice", "price": 78},
+        {"name": "豚肉丼飯(配太陽蛋)", "english": "Pork Rice Bowl With Egg", "price": 45},
+        {"name": "麻辣豚肉丼飯(配大陽蛋)", "english": "Sichuan Spicy Pork Rice Bowl With Egg", "price": 45},
+        {"name": "(咖喱/蕃茄)豚肉丼飯(配太陽蛋)", "english": "(Curry/Tomato) Pork Rice Bowl with Egg", "price": 45},
+        {"name": "泡菜辣炒豚肉飯", "english": "Spicy Kimchi Stir-Fried Sliced Pork With Rice", "price": 48},
+        {"name": "(咖喱/蕃茄)免治豬肉煎蛋飯", "english": "(curry/Tomato) Tomato Minced Pork With Fried Egg Rice", "price": 45},
+        {"name": "黑松露滑蛋蝦仁飯", "english": "Black Truffle Scrambled Egg and Shrimp Rice", "price": 46},
+        {"name": "滑蛋吉列豬扒飯", "english": "Screamble Egg Prok Cutlet With Rice", "price": 45},
+        {"name": "咖哩炸雞飯", "english": "Curry Fried Chicken With Rice", "price": 42},
+        {"name": "咖哩吉列豬扒飯", "english": "Curry Cutlet With Rice", "price": 43},
+        {"name": "咖喱吉列蠔飯", "english": "Curry Oyster With Rice", "price": 56},
+        {"name": "(咖喱/粟米)石班魚飯", "english": "Curry/Corn Sauce Grouper Frsh Cutlet With Rice", "price": 46},
+        {"name": "白汁香草煎雞飯", "english": "Cream Sauce Pan Fried Chicken FilletWith Rice", "price": 43},
+        {"name": "(咖喱/白汁/粟米)雞翼飯", "english": "(Curry/Cream Sauce / Corn Sauce) Chicken Steak With Rice", "price": 40},
+        {"name": "(咖喱/白汁/粟米)雞扒飯", "english": "(Curry/Cream Sauce / Corn Sauce) Chicken Steak With Rice", "price": 40},
+        {"name": "照燒香煎蠔配豚肉飯", "english": "Stir-Fried Oyster and Sliced Pork with Rice", "price": 63}
+    ],
+    "烏冬類(讚岐烏冬) Udon (Sanuki Udon)": [
+        {"name": "咖哩炸雞烏冬", "english": "Curry Fried Chicken With Udon", "price": 44},
+        {"name": "咖哩吉列豬扒烏冬", "english": "Curry Pork Cutlet With Udon", "price": 46},
+        {"name": "咖喱石斑魚烏冬", "english": "Curry Grouper Cutlet With Udon", "price": 49},
+        {"name": "咖喱吉列蠔烏冬", "english": "Curry Oyster With Udon", "price": 60},
+        {"name": "(咖喱/白汁/燒汁)雞扒烏冬", "english": "Curry/Cream Sauce/Brown Sauce/Corn Sauce Chicken Wings With Rice", "price": 42},
+        {"name": "(咖喱/白汁/燒汁)雞翼烏冬", "english": "Curry/Cream Sauce / Brown Sauce Chicken Wings With Udon", "price": 42}
+    ],
+    "焗飯類 Baked Rice": [
+        {"name": "芝士焗白汁雞皇飯", "english": "Cheese Baked Chicken A La King Rice", "price": 48},
+        {"name": "芝上焗白汁石斑魚飯", "english": "Cheese Baked Grouper Frsh Cutlet With Rice", "price": 56},
+        {"name": "芝上焗煙三文魚牛油果飯", "english": "Cheese Baked Smoked Selmon And Avocado With Rice", "price": 59},
+        {"name": "芝士焗(咖喱/蕃茄)免治豬肉飯", "english": "Cheese Baked Curry/Tomato Minced Pork Rice", "price": 50},
+        {"name": "芝士焗白汁煙三文魚吞拿魚飯", "english": "Cheese Baked Smoke Salmon and Tuna with Rice", "price": 59}
+    ],
+    "蕃茄濃湯讚岐烏冬 Tomato Soup with Kanazawa Udon": [
+        {"name": "番茄濃湯配讚岐烏冬配(7選1)", "english": "Tomato Soup with Udon With", "price": None},
+        {"name": "1.墨魚丸", "english": "Cuttlefish Balls", "price": 40},
+        {"name": "2.厚切餐肉蛋(炒雙蛋+$5)", "english": "Luncheon Meat and Egg", "price": 40},
+        {"name": "3.日式炸餃子(4件)", "english": "Japanese Pork Dumplings.", "price": 40},
+        {"name": "4.雞中翼(4隻)", "english": "Chicken Wings", "price": 43},
+        {"name": "5.黑椒豚肉", "english": "Black Papper Pork", "price": 45},
+        {"name": "6.花枝蝦餅", "english": "Fried Sqiud Shrimp Cake", "price": 45},
+        {"name": "7.腐皮蝦卷", "english": "Fried Prawn Beancurd Roll", "price": 45}
+    ],
+    "出前一丁類 Instant Noodle": [
+        {"name": "芝士咖喱免治豬肉捞出前一丁", "english": "Cheese Curry Minced Pork with Instant Noodle", "price": 48},
+        {"name": "芝士雞翼撈出前一丁", "english": "Cheese Sauce Instant Noodle with Chicken Wings", "price": 45},
+        {"name": "芝士雞扒捞出前一丁", "english": "Cheese Sauce Instant Noodle with Chicken Steak", "price": 45},
+        {"name": "辣鱼配太陽蛋出前一丁", "english": "Spicy Fish and Egg with Instant Noodle", "price": 38}
+    ],
+    "辛辣麵類 Spicy Shin Noodle": [
+        {"name": "芝士辛辣麵配雞中翼", "english": "Cheese spicy noodles with chicken wings", "price": 45},
+        {"name": "芝士辛辣麵配餐肉蛋", "english": "Cheese spicy noodles with luncheon meat and egg", "price": 43}
+    ],
+    "各式意粉 Spaghetti": [
+        {"name": "特濃番茄雞肉炒意粉", "english": "Tomato Chicken With Spaghetti Stir-Fry", "price": 46},
+        {"name": "白汁煙三文魚吞拿魚炒意粉", "english": "Cream Sauce Smoked Salmon and Tuna Fish With Spaghetti Stir-Fry", "price": 56},
+        {"name": "吉列蠔配蒜香炒意粉", "english": "Oyster Cutiet With Garlic Spaghetti Stir-Fry", "price": 56},
+        {"name": "芝士焗番茄免治豬肉意粉", "english": "Cheese Baked Tomato Miced Pork With Spaghetti", "price": 56},
+        {"name": "芝士焗咖喱免治豬肉意粉", "english": "Cheese Baked Carry mineed Pork With Spaghetti", "price": 56},
+        {"name": "芝士焗白汁煙三文魚吞拿魚意粉", "english": "Cheese Baked Smoked Salmon and Tuna Fish With Spaghetti", "price": 62},
+        {"name": "蒜香帶子蝦仁炒意粉", "english": "Garlic Scallops and Shrimp Spaghetti Stir-Fry", "price": 60}
+    ],
+    "小食 Snacks": [
+        {"name": "招牌鹽酥雞(可加辣)", "english": "Popcorn Chicken", "price": 30},
+        {"name": "唐揚炸雞(6件)", "english": "Chicken Karaage", "price": 42},
+        {"name": "炸雞中翼(4隻)/(6隻)", "english": "Fried Chicken Wings(4pcs.)/ (6pcs.)", "price": "28/38"},
+        {"name": "香草雞翼 (4隻)/(6隻)", "english": "Herb Chicken Wings (4pcs.)/(6pcs.)", "price": "32/42"},
+        {"name": "蒜香雞翼(4隻)/(6隻)", "english": "Fried Sqiud Shrimp Cake (2pcs.)", "price": "32/42"},
+        {"name": "花椒雞翼(4隻)/(6隻)", "english": "Sichuan Pepper Chicken Wings (4pcs.)/(6pcs.)", "price": "32/42"},
+        {"name": "炸花枝蝦餅(2件)", "english": "Sichuan peppercorn chicken wings (2pcs.)", "price": 28},
+        {"name": "炸腐皮蝦卷(4件)", "english": "Fried Prawn Beancurd Roll (4pcs.)", "price": 28},
+        {"name": "麦樂雞(6件)/(8件)", "english": "Chicken Nuggets(6pcs.)/(8pcs.)", "price": "23/28"},
+        {"name": "日式炸餃子(6件)/(8件)", "english": "Japanese Pork Dumplings (6pcs.)/(8pcs.)", "price": "28/36"},
+        {"name": "炸粗薯條/炸薯角", "english": "Fries/Potato Wedges", "price": 18},
+        {"name": "炸薯格", "english": "Crissut Fries", "price": 22},
+        {"name": "炸薯餅(2pcs.)", "english": "Hash Brown (2pcs.)", "price": 18},
+        {"name": "咖喱烤雞串(3串)", "english": "Grilled Curry Chicken (3 (sk.))", "price": 45},
+        {"name": "炸馬介休球(4pcs.)/(6pcs.)", "english": "Bolinhos de bacalhau (4pcs.)/(6pcs.)", "price": "33/45"},
+        {"name": "炸吉列蠔(4件)", "english": "Oyster(4pcs)", "price": 48},
+        {"name": "炸物拼盤(花枝蝦餅2件,腐皮蝦卷2件, 炸雞中翼4件,馬介休球4件,薯角/薯條(二選一))", "english": "Fried Food Platter", "price": 108}
+    ],
+    "蔬菜類 Vegetables": [
+        {"name": "芝士白汁焗西蘭花", "english": "Cheese Baked Broccoli", "price": 42},
+        {"name": "蒜蓉炒娃娃菜", "english": "Stir Fry Baby Cabbage With Garlic", "price": 38},
+        {"name": "蒜蓉炒西蘭花", "english": "Stir Fry Broccoli With Garlic", "price": 38}
+    ],
+    "各式飲品 Drinks": [
+        {"name": "即磨咖啡", "english": "Fresh Ground Coffee", "price": "13 (熱) / 15 (凍)"},
+        {"name": "400次手打鮮奶咖啡", "english": "Iced Dalgona Coffee", "price": "/ 25"},
+        {"name": "橙美式(凍)", "english": "Orange Americano", "price": "/ 23"},
+        {"name": "摩卡咖啡", "english": "Mocha Coffee", "price": "18 / 20"},
+        {"name": "生椰拿鐵(凍)", "english": "Iced Raw Coconut Latte", "price": "/ 25"},
+        {"name": "焦糖咖啡", "english": "Iced Caramel Macchiato", "price": "18 / 20"},
+        {"name": "抹茶拿鐵", "english": "Matcha Latte", "price": "18 / 20"},
+        {"name": "泰式奶茶", "english": "Thai Milk Tea", "price": "18 / 20"},
+        {"name": "奶茶", "english": "Mike Tea", "price": "14 / 16"},
+        {"name": "朱古力", "english": "Chocolate Mike", "price": "16 / 18"},
+        {"name": "阿華田", "english": "Ovaltine", "price": "13 / 15"},
+        {"name": "柚子茶", "english": "Citron Tea", "price": "13 / 15"},
+        {"name": "柚子梳打(凍)", "english": "Lced Citron Sode", "price": "/ 20"},
+        {"name": "薑茶", "english": "Hot Ginger Tea", "price": "14 /"}
+    ],
+    "養生飲品 Healthy Drinks": [
+        {"name": "羅漢果水", "english": "Grosvenor Momordica Tea", "price": 10},
+        {"name": "檸檬薏米水", "english": "Lemon Barley Water", "price": 12},
+        {"name": "紫背天癸", "english": "Fimbristipula tlance drink", "price": 15}
+    ],
+    "意大利薄饼 PIZZA": [
+        {"name": "夏威夷PIZZA", "english": "Hawaiian Pizza", "price": "78 (10吋) / 98 (12吋)"},
+        {"name": "吞拿魚PIZZA", "english": "Tuna Pizza", "price": "88 / 108"},
+        {"name": "烤雞PIZZA", "english": "Grilled Chicken Pizza", "price": "96 / 116"},
+        {"name": "麻辣烤雞PIZZA", "english": "Sichuan Spicy Grilled Chicken Pizza", "price": "98 / 118"},
+        {"name": "煙三文魚PIZZA", "english": "Smoked Salmon Pizza", "price": "118 / 138"}
+    ],
+    "墨西哥卷 Wrap": [
+        {"name": "雞肉墨西哥卷(可加辣)", "english": "Chicken Wrap", "price": 32},
+        {"name": "辣味豚肉墨西哥卷", "english": "Spicy Stir-Fried Sliced Pork Wrap", "price": 35},
+        {"name": "煙三文魚配牛油果墨西哥卷", "english": "Smoked Salmon and Avocado Wrap", "price": 43},
+        {"name": "咖喱免治豬肉墨西哥卷", "english": "Curry Minced Pork Warp", "price": 35},
+        {"name": "泡菜豚肉墨西哥卷", "english": "Kimchi Stir-Fried Siiced Pork warp", "price": 38},
+        {"name": "(加蛋$4加芝士$6)", "english": "", "price": None}
+    ],
+    "豬仔包 Bun": [
+        {"name": "芝士辣魚豬仔包", "english": "Cheese And Spicy Fish Bun", "price": 28},
+        {"name": "芝士吞拿魚豬仔包", "english": "Cheese And Tuna Bun", "price": 28},
+        {"name": "雞扒沙津醬豬仔包", "english": "Chicken Steak Bun", "price": 26},
+        {"name": "豬扒沙津醬豬仔包", "english": "Pork Chop Bun", "price": 26},
+        {"name": "(黑椒/咖喱)豚肉豬仔包", "english": "Black Pepper/Curry Sliced Pork Bun", "price": 30},
+        {"name": "蒜蓉豬仔包", "english": "Garlic Bun", "price": 18},
+        {"name": "(加蛋$4加芝士$6)", "english": "", "price": None}
+    ],
+    "追加": [
+        {"name": "加炒雙蛋$10 加太陽蛋$4加芝士$6白飯加底$3讚岐烏冬加底$8出前一丁加底$8", "english": "", "price": None}
+    ]
+}
 
-    <div class="menu-section">
-        <h2>焗飯類 Baked Rice</h2>
-        <div class="menu-item">
-            <div class="chinese">芝士焗白汁雞皇飯</div>
-            <div class="english">Cheese Baked Chicken A La King Rice</div>
-            <div class="price">$48</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士焗白汁石斑魚飯</div>
-            <div class="english">Cheese Baked Grouper Fish Cutlet With Rice</div>
-            <div class="price">$56</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士焗煙三文魚牛油果飯</div>
-            <div class="english">Cheese Baked Smoked Salmon And Avocado With Rice</div>
-            <div class="price">$59</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士焗(咖喱/蕃茄)免治豬肉飯</div>
-            <div class="english">Cheese Baked Curry/Tomato Mined Pork Rice</div>
-            <div class="price">$50</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士焗白汁煙三文魚吞拿魚飯</div>
-            <div class="english">Cheese Baked Smoke Salmon and Tuna with Rice</div>
-            <div class="price">$59</div>
-        </div>
-    </div>
+# Function to print the menu nicely
+def print_menu():
+    for category, items in menu.items():
+        print(f"\n{category}")
+        print("-" * len(category))
+        for item in items:
+            name = item['name']
+            english = item.get('english', '')
+            price = item['price']
+            if price is None:
+                print(f"{name} {english}")
+            else:
+                print(f"{name} {english} - ${price}")
 
-    <div class="menu-section">
-        <h2>番茄濃湯護岐烏冬 Tomato Soup with Kanazawa Udon</h2>
-        <h3>番茄濃湯配護岐烏冬配 (7選1) Tomato Soup with Udon With</h3>
-        <div class="menu-item">
-            <div class="chinese">1. 墨魚丸</div>
-            <div class="english">Cuttlefish Balls</div>
-            <div class="price">$40</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">2. 厚切餐肉蛋(炒雙蛋+$5)</div>
-            <div class="english">Luncheon Meat and Egg</div>
-            <div class="price">$40</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">3. 日式炸餃子(4件)</div>
-            <div class="english">Japanese Pork Dumplings</div>
-            <div class="price">$43</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">4. 雞中翼(4隻)</div>
-            <div class="english">Chicken Wings</div>
-            <div class="price">$45</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">5. 黑椒豚肉</div>
-            <div class="english">Black Papper Pork</div>
-            <div class="price">$45</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">6. 花枝蝦餅</div>
-            <div class="english">Fried Squid Shrimp Cake</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">7. 腐皮蝦卷</div>
-            <div class="english">Fried Prawn Beancurd Roll</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>出前一丁類 Instant Noodle</h2>
-        <div class="menu-item">
-            <div class="chinese">芝士咖喱兔治豬肉撈出前一丁</div>
-            <div class="english">Cheese Curry Minced Pork with Instant Noodle</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士雞翼撈出前一丁</div>
-            <div class="english">Cheese Sauce Instant Noodle with Chicken Wings</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士雞扒撈出前一丁</div>
-            <div class="english">Cheese Sauce Instant Noodle with Chicken Steak</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">辣鱼配太陽蛋出前一丁</div>
-            <div class="english">Spicy Fish and Egg with Instant Noodle</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>辛辣麵類 Spicy Shin Noodle</h2>
-        <div class="menu-item">
-            <div class="chinese">芝士辛辣麵配雞中翼</div>
-            <div class="english">Cheese spicy noodles with chicken wings</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士辛辣麵配餐肉蛋</div>
-            <div class="english">Cheese spicy noodles with luncheon meat and egg</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>意大利薄饼 PIZZA</h2>
-        <div class="menu-item">
-            <div class="chinese">夏威夷PIZZA</div>
-            <div class="english">Hawaiian Pizza</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">香拿魚PIZZA</div>
-            <div class="english">Tuna Pizza</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">烤雞PIZZA</div>
-            <div class="english">Grilled Chicken Pizza</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">麻辣烤雞PIZZA</div>
-            <div class="english">Sichuan Spicy Grilled Chicken Pizza</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">煙三文魚PIZZA</div>
-            <div class="english">Smoked Salmon Pizza</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>墨西哥卷 Wrap</h2>
-        <div class="menu-item">
-            <div class="chinese">雞肉墨西哥卷(可加辣)</div>
-            <div class="english">Chicken Wrap</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">辣味豚肉墨西哥卷</div>
-            <div class="english">Spicy Stir-Fried Sliced Pork Wrap</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">煙三文魚配牛油果墨西哥卷</div>
-            <div class="english">Smoked Salmon and Avocado Wrap</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">咖喱兔治豬肉墨西哥卷</div>
-            <div class="english">Curry Mined Pork Warp</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">泡菜豚肉墨西哥卷</div>
-            <div class="english">Kimchi Stir-Fried Sliced Pork warp</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>猪仔包 Bun</h2>
-        <div class="menu-item">
-            <div class="chinese">芝士辣魚豬仔包</div>
-            <div class="english">Cheese And Spicy Fish Bun</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">芝士吞拿魚豬仔包</div>
-            <div class="english">Cheese And Tuna Bun</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">雞扒沙津醬豬仔包</div>
-            <div class="english">Chicken Steak Bun</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">豬扒沙津醬豬仔包</div>
-            <div class="english">Pork Chop Bun</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">(黑椒/咖喱)豚肉豬仔包</div>
-            <div class="english">Black Pepper / Curry Sliced Pork Bun</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">蒜蓉豬仔包</div>
-            <div class="english">Garlic Bun</div>
-        </div>
-    </div>
-
-    <div class="menu-section">
-        <h2>飲品 Drinks</h2>
-        <div class="menu-item">
-            <div class="chinese">橙美式(凍)</div>
-            <div class="english">Orange Americano</div>
-            <div class="price">$18</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">摩卡咖啡</div>
-            <div class="english">Mocha Coffee</div>
-            <div class="price">$20</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">生椰拿鐵(凍)</div>
-            <div class="english">Iced Raw Coconut Latte</div>
-            <div class="price">$25</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">焦糖咖啡</div>
-            <div class="english">Iced Caramel Macchiato</div>
-            <div class="price">$20</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">抹茶拿鐵</div>
-            <div class="english">Matcha Latte</div>
-            <div class="price">$20</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">泰式奶茶</div>
-            <div class="english">Thai Milk Tea</div>
-            <div class="price">$20</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">奶茶</div>
-            <div class="english">Mike Tea</div>
-            <div class="price">$16</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">朱古力</div>
-            <div class="english">Chocolate Mike</div>
-            <div class="price">$18</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">阿華田</div>
-            <div class="english">Ovaltine</div>
-            <div class="price">$15</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">柚子茶</div>
-            <div class="english">Citron Tea</div>
-            <div class="price">$15</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">柚子梳打(凍)</div>
-            <div class="english">Iced Citron Sode</div>
-            <div class="price">$20</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">薑茶</div>
-            <div class="english">Hot Ginger Tea</div>
-            <div class="price">$14</div>
-        </div>
-        
-        <h3>養生飲品 Healthy Drinks</h3>
-        <div class="menu-item">
-            <div class="chinese">羅漢果水</div>
-            <div class="english">Grosvenor Momordica Tea</div>
-            <div class="price">$10</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">檸檬薑米水</div>
-            <div class="english">Lemon Barley Water</div>
-            <div class="price">$12</div>
-        </div>
-        <div class="menu-item">
-            <div class="chinese">紫背天癸</div>
-            <div class="english">Fimbristipula tlance drink</div>
-            <div class="price">$15</div>
-        </div>
-    </div>
-
-    <div class="add-ons">
-        <h3>追加選項 Add-ons</h3>
-        <p>加炒雙蛋 $10 | 加太陽蛋 $4 | 加芝士 $6 | 白飯加底 $3 | 讚岐烏冬加底 $8 | 出前一丁加底 $8</p>
-    </div>
-
-    <div class="contact">
-        <p>地址: 水字巷61號永利大廈地下B铺</p>
-        <p>電話: 6388 0338 (歡迎外賣自取)</p>
-    </div>
-</body>
-</html>
+# Example usage
+if __name__ == "__main__":
+    print_menu()
