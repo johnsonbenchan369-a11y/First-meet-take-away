@@ -1,820 +1,392 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>72食堂 電子餐牌</title>
+    <title>餐廳菜單</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Microsoft JhengHei', 'PingFang HK', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #e0f7fa, #ffffff);
-            color: #333;
-            line-height: 1.6;
-            padding: 10px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 15px 0;
-            background: #00bcd4;
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .address {
-            font-size: 0.9rem;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .category {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-        }
-
-        .category:hover {
-            transform: translateY(-5px);
-        }
-
-        .category-header {
-            padding: 12px 15px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: white;
-            text-align: center;
-        }
-
-        /* 各類別顏色（完全依照原圖） */
-        .cat-rice .category-header { background: #ff9800; }
-        .cat-baked-rice .category-header { background: #e91e63; }
-        .cat-pizza .category-header { background: #009688; }
-        .cat-spaghetti .category-header { background: #ffeb3b; color: #333; }
-        .cat-udon .category-header { background: #f44336; }
-        .cat-instant .category-header { background: #4caf50; }
-        .cat-wrap .category-header { background: #9c27b0; }
-        .cat-bun .category-header { background: #ff5722; }
-        .cat-snacks .category-header { background: #e91e63; }
-        .cat-vegetables .category-header { background: #8bc34a; }
-        .cat-drinks .category-header { background: #03a9f4; }
-        .cat-healthy .category-header { background: #cddc39; color: #333; }
-
-        .item-list {
-            padding: 10px 15px;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed #ddd;
-            font-size: 0.95rem;
-        }
-
-        .item:last-child {
-            border-bottom: none;
-        }
-
-        .item-name {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        .item-price {
-            color: #d32f2f;
-            font-weight: bold;
-            min-width: 60px;
-            text-align: right;
-        }
-
-        .item-note {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 2px;
-            padding-left: 5px;
-        }
-
-        .special {
-            color: #d32f2f;
-            font-weight: bold;
-        }
-
-        .footer-note {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff3e0;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: #e65100;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .header h1 {
-                font-size: 1.5rem;
-            }
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .menu-section { margin-bottom: 30px; }
+        .menu-item { margin: 10px 0; }
+        .price { float: right; font-weight: bold; }
+        .chinese { font-size: 1.1em; }
+        .english { font-size: 0.9em; color: #666; font-style: italic; }
+        .add-ons { background: #f5f5f5; padding: 10px; margin: 10px 0; }
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <h1>72食堂</h1>
-        <p>地址：澳門司打口水客巷61號永利大廈地下B鋪</p>
-        <p class="address">外賣電話：6388 0338（歡迎外賣自取）</p>
+    <div class="menu-section">
+        <h2>飯類 Rice</h2>
+        <div class="menu-item">
+            <div class="chinese">滑蛋雞柳飯(可加辣)</div>
+            <div class="english">Fried Egg and Chicken Fillet With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">滑蛋浦燒鰻魚飯</div>
+            <div class="english">Fried Egg and EEL with Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">特盛浦燒鰻魚飯</div>
+            <div class="english">Large Kabayaki EEL with Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">豚肉拌飯(配太陽蛋)</div>
+            <div class="english">Pork Rice Bowl With Egg</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">麻辣豚肉拌飯(配太陽蛋)</div>
+            <div class="english">Sichuan Spicy Pork Rice Bowl With Egg</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/蕃茄)豚肉拌飯(配太陽蛋)</div>
+            <div class="english">(Curry/Tomato ) Pork Rice Bowl with Egg</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">泡菜辣炒豚肉飯</div>
+            <div class="english">Spicy Kimchi Stir-Fried Sliced Pork With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/蕃茄)免治豬肉煎蛋飯</div>
+            <div class="english">(curry/Tomato ) Tomato Minced Pork With Fried Egg Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">黑松露滑蛋蝦仁飯</div>
+            <div class="english">Black Truffle Scrambled Egg and Shrimp Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">滑蛋吉列豬扒飯</div>
+            <div class="english">Scramble Egg Prok Cutlet With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱炸雞飯</div>
+            <div class="english">Curry Fried Chicken With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱吉列豬扒飯</div>
+            <div class="english">Curry Cutlet With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱吉列螺飯</div>
+            <div class="english">Curry Oyster With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/粟米)石斑魚飯</div>
+            <div class="english">Curry / Corn Sauce Grouper Fish Cutlet With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">白汁香草煎雞飯</div>
+            <div class="english">Cream Sauce Pan Fried Chicken FilletWith Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/白汁/粟米)雞翼飯</div>
+            <div class="english">(Curry / Cream Sauce / Corn Sauce ) Chicken Steak With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/白汁/粟米)雞扒飯</div>
+            <div class="english">(Curry / Cream Sauce / Corn Sauce ) Chicken Steak With Rice</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">照燒香煎螺配豚肉飯</div>
+            <div class="english">Stir-Fried Oyster and Sliced Pork with Rice</div>
+        </div>
     </div>
 
-    <div class="container">
-
-        <!-- 飯類 Rice -->
-        <div class="category cat-rice">
-            <div class="category-header">飯類 Rice</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">焗豬扒飯（可選配）</div>
-                        <div class="item-note">Baked Pork Chop Rice (Choose Flavour)</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">焗海鮮飯（可選配）</div>
-                        <div class="item-note">Baked Seafood Rice</div>
-                    </div>
-                    <div class="item-price">$53</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">焗雞扒飯（可選配）</div>
-                        <div class="item-note">Baked Chicken Steak Rice</div>
-                    </div>
-                    <div class="item-price">$45</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">焗牛柳粒飯（可選配）</div>
-                        <div class="item-note">Baked Beef Cube Rice</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">葡國雞飯（可選配）</div>
-                        <div class="item-note">Portuguese Chicken Rice</div>
-                    </div>
-                    <div class="item-price">$45</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">黑椒豬扒飯（可選配）</div>
-                        <div class="item-note">Black Pepper Pork Chop Rice</div>
-                    </div>
-                    <div class="item-price">$45</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">黑椒牛柳粒飯（可選配）</div>
-                        <div class="item-note">Black Pepper Beef Cube Rice</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">吉列豬扒飯（可選配）</div>
-                        <div class="item-note">Deep Fried Pork Chop Rice</div>
-                    </div>
-                    <div class="item-price">$45</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">沙嗲牛肉飯（可選配）</div>
-                        <div class="item-note">Satay Beef Rice</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">泰式雞扒飯（可選配）</div>
-                        <div class="item-note">Thai Style Chicken Rice</div>
-                    </div>
-                    <div class="item-price">$45</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">咖喱牛腩飯（可選配）</div>
-                        <div class="item-note">Curry Beef Brisket Rice</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">豉椒炒牛肉飯（可選配）</div>
-                        <div class="item-note">Black Bean Sauce Beef Rice</div>
-                    </div>
-                    <div class="item-price">$43</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">薑蔥牛肉飯（可選配）</div>
-                        <div class="item-note">Ginger & Spring Onion Beef Rice</div>
-                    </div>
-                    <div class="item-price">$43</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">豉油皇炒飯（可選配）</div>
-                        <div class="item-note">Soy Sauce Fried Rice</div>
-                    </div>
-                    <div class="item-price">$40</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">揚州炒飯（可選配）</div>
-                        <div class="item-note">Yangzhou Fried Rice</div>
-                    </div>
-                    <div class="item-price">$40</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雜菜炒飯（可選配）</div>
-                        <div class="item-note">Mixed Vegetable Fried Rice</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-            </div>
+    <div class="menu-section">
+        <h2>烏冬類(讚岐烏冬) Udon (Sanuki Udon)</h2>
+        <div class="menu-item">
+            <div class="chinese">咖喱炸雞烏冬</div>
+            <div class="english">Curry Fried Chicken With Udon</div>
         </div>
-
-        <!-- 焗飯類 Baked Rice -->
-        <div class="category cat-baked-rice">
-            <div class="category-header">焗飯類 Baked Rice</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗豬扒飯</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗海鮮飯</div>
-                    </div>
-                    <div class="item-price">$53</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗雞扒飯</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗牛柳粒飯</div>
-                    </div>
-                    <div class="item-price">$50</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗葡國雞飯</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗咖喱牛腩飯</div>
-                    </div>
-                    <div class="item-price">$50</div>
-                </div>
-            </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱吉列豬扒烏冬</div>
+            <div class="english">Curry Pork Cutlet With Udon</div>
         </div>
-
-        <!-- 意大利薄餅 PIZZA -->
-        <div class="category cat-pizza">
-            <div class="category-header">意大利薄餅 PIZZA</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">夏威夷PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $78 / 12吋 $98</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">意式香腸PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $78 / 12吋 $98</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">海鮮PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $90 / 12吋 $110</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">什錦薄餅PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $90 / 12吋 $110</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">瑪格麗塔PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $78 / 12吋 $98</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士三文魚PIZZA</div>
-                    </div>
-                    <div class="item-price">10吋 $116 / 12吋 $138</div>
-                </div>
-            </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱石斑魚烏冬</div>
+            <div class="english">Curry Grouper Cutlet With Udon</div>
+            <div class="price">$49</div>
         </div>
-
-        <!-- 意式意粉 Spaghetti -->
-        <div class="category cat-spaghetti">
-            <div class="category-header">意式意粉 Spaghetti</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">肉醬意粉配蒜蓉包</div>
-                        <div class="item-note">(Tomato Sauce with Minced Beef + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">白汁海鮮意粉配蒜蓉包</div>
-                        <div class="item-note">(Creamy Seafood + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$56</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">青醬雞肉意粉配蒜蓉包</div>
-                        <div class="item-note">(Pesto Chicken + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$56</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">意式香腸意粉配蒜蓉包</div>
-                        <div class="item-note">(Italian Sausage + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$56</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗肉醬千層麵配蒜蓉包</div>
-                        <div class="item-note">(Baked Lasagna + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$56</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗白汁海鮮千層麵配蒜蓉包</div>
-                        <div class="item-note">(Baked Seafood Lasagna + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$62</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">意式香腸白汁意粉配蒜蓉包</div>
-                        <div class="item-note">(Italian Sausage Creamy + Garlic Bread)</div>
-                    </div>
-                    <div class="item-price">$60</div>
-                </div>
-            </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱吉列螺烏冬</div>
+            <div class="english">Curry Oyster With Udon</div>
+            <div class="price">$60</div>
         </div>
-
-        <!-- 烏冬類（讚岐烏冬） Udon -->
-        <div class="category cat-udon">
-            <div class="category-header">烏冬類（讚岐烏冬） Udon (Sanuki Udon)</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">日式炸雞烏冬</div>
-                    </div>
-                    <div class="item-price">$44</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">日式炸豬扒烏冬</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">牛肉烏冬</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">海鮮烏冬</div>
-                    </div>
-                    <div class="item-price">$50</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">咖喱牛腩烏冬</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">薑蔥牛肉烏冬</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">豉椒牛肉烏冬</div>
-                    </div>
-                    <div class="item-price">$46</div>
-                </div>
-            </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/白汁/燒汁)雞扒烏冬</div>
+            <div class="english">Curry / Cream Sauce / Brown Sauce / Corn Sauce Chicken Wings With Rice</div>
+            <div class="price">$42</div>
         </div>
-
-        <!-- 出前一丁類 Instant Noodle -->
-        <div class="category cat-instant">
-            <div class="category-header">出前一丁類 Instant Noodle</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士蛋撈出前一丁</div>
-                    </div>
-                    <div class="item-price">$40</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士蛋撈出前一丁 + 午餐肉</div>
-                    </div>
-                    <div class="item-price">$44</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士蛋撈出前一丁 + 火腿</div>
-                    </div>
-                    <div class="item-price">$44</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士蛋撈出前一丁 + 牛肉</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士蛋撈出前一丁 + 雞翼</div>
-                    </div>
-                    <div class="item-price">$48</div>
-                </div>
-            </div>
+        <div class="menu-item">
+            <div class="chinese">(咖喱/白汁/燒汁)雞翼烏冬</div>
+            <div class="english">Curry / Cream Sauce / Brown Sauce Chicken Wings With Udon</div>
+            <div class="price">$42</div>
         </div>
-
-        <!-- 墨西哥卷 Wrap -->
-        <div class="category cat-wrap">
-            <div class="category-header">墨西哥卷 Wrap</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">墨西哥雞肉卷（可選配）</div>
-                    </div>
-                    <div class="item-price">$32</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">墨西哥牛肉卷（可選配）</div>
-                    </div>
-                    <div class="item-price">$35</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士三文魚卷（可選配）</div>
-                    </div>
-                    <div class="item-price">$43</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">墨西哥豬扒卷（可選配）</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">墨西哥海鮮卷（可選配）</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 包類 Bun -->
-        <div class="category cat-bun">
-            <div class="category-header">包類 Bun</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗豬扒包</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗雞扒包</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗牛柳包</div>
-                    </div>
-                    <div class="item-price">$42</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗火腿蛋包</div>
-                    </div>
-                    <div class="item-price">$28</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗沙嗲牛肉包</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗咖喱牛腩包</div>
-                    </div>
-                    <div class="item-price">$40</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗海鮮包</div>
-                    </div>
-                    <div class="item-price">$40</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗葡國雞包</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 小食 Snacks -->
-        <div class="category cat-snacks">
-            <div class="category-header">小食 Snacks</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">薯條（原味）</div>
-                    </div>
-                    <div class="item-price">$20</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">薯條（辣味）</div>
-                    </div>
-                    <div class="item-price">$22</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（原味）</div>
-                    </div>
-                    <div class="item-price">$28</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（辣味）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（蜜糖）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（蒜蓉）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（黑椒）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（沙嗲）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（咖喱）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（泰式）</div>
-                    </div>
-                    <div class="item-price">$30</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（蜜糖芥末）</div>
-                    </div>
-                    <div class="item-price">$32</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雞翼（黑松露）</div>
-                    </div>
-                    <div class="item-price">$35</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 蔬菜類 Vegetables -->
-        <div class="category cat-vegetables">
-            <div class="category-header">蔬菜類 Vegetables</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">芝士焗什錦蔬菜</div>
-                        <div class="item-note">Cheese Baked Mixed Vegetables</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">蒜蓉炒西蘭花</div>
-                        <div class="item-note">Stir Fried Baby Cabbage with Garlic</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">蠔油芥蘭</div>
-                        <div class="item-note">Stir Fried Kailan with Oyster Sauce</div>
-                    </div>
-                    <div class="item-price">$38</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 各式飲品 Drinks -->
-        <div class="category cat-drinks">
-            <div class="category-header">各式飲品 Drinks</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">檸檬茶</div>
-                    </div>
-                    <div class="item-price">熱 $13 / 凍 $15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">400次元氣檸檬茶</div>
-                    </div>
-                    <div class="item-price">$23</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">雪碧（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">可樂（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">零度可樂（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">芬達（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">豆奶（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">菊花茶（罐）</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">水（瓶）</div>
-                    </div>
-                    <div class="item-price">$10</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 養生飲品 Healthy Drinks -->
-        <div class="category cat-healthy">
-            <div class="category-header">養生飲品 Healthy Drinks</div>
-            <div class="item-list">
-                <div class="item">
-                    <div>
-                        <div class="item-name">蘆薈蜜糖</div>
-                        <div class="item-note">Aloe Vera Honey</div>
-                    </div>
-                    <div class="item-price">$15</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">檸檬蜂蜜茶</div>
-                        <div class="item-note">Lemon Honey Tea</div>
-                    </div>
-                    <div class="item-price">$17</div>
-                </div>
-                <div class="item">
-                    <div>
-                        <div class="item-name">蜜糖奇異果</div>
-                        <div class="item-note">Kiwi Honey</div>
-                    </div>
-                    <div class="item-price">$18</div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <div class="footer-note">
-        <p><strong>追加：加炒蛋 $10 | 加太陽蛋 $4 | 加芝士 $6 | 白飯加底 $3 | 讚岐烏冬各加底 $8 | 出前一丁加底 $8</strong></p>
+    <div class="menu-section">
+        <h2>焗飯類 Baked Rice</h2>
+        <div class="menu-item">
+            <div class="chinese">芝士焗白汁雞皇飯</div>
+            <div class="english">Cheese Baked Chicken A La King Rice</div>
+            <div class="price">$48</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士焗白汁石斑魚飯</div>
+            <div class="english">Cheese Baked Grouper Fish Cutlet With Rice</div>
+            <div class="price">$56</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士焗煙三文魚牛油果飯</div>
+            <div class="english">Cheese Baked Smoked Salmon And Avocado With Rice</div>
+            <div class="price">$59</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士焗(咖喱/蕃茄)免治豬肉飯</div>
+            <div class="english">Cheese Baked Curry/Tomato Mined Pork Rice</div>
+            <div class="price">$50</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士焗白汁煙三文魚吞拿魚飯</div>
+            <div class="english">Cheese Baked Smoke Salmon and Tuna with Rice</div>
+            <div class="price">$59</div>
+        </div>
     </div>
 
-    <script>
-        // 可選：加入搜尋功能
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = '搜尋菜式...';
-        searchInput.style.cssText = 'width:100%; padding:12px; margin:15px 0; border-radius:8px; border:1px solid #ccc; font-size:1rem;';
-        document.querySelector('.header').appendChild(searchInput);
+    <div class="menu-section">
+        <h2>番茄濃湯護岐烏冬 Tomato Soup with Kanazawa Udon</h2>
+        <h3>番茄濃湯配護岐烏冬配 (7選1) Tomato Soup with Udon With</h3>
+        <div class="menu-item">
+            <div class="chinese">1. 墨魚丸</div>
+            <div class="english">Cuttlefish Balls</div>
+            <div class="price">$40</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">2. 厚切餐肉蛋(炒雙蛋+$5)</div>
+            <div class="english">Luncheon Meat and Egg</div>
+            <div class="price">$40</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">3. 日式炸餃子(4件)</div>
+            <div class="english">Japanese Pork Dumplings</div>
+            <div class="price">$43</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">4. 雞中翼(4隻)</div>
+            <div class="english">Chicken Wings</div>
+            <div class="price">$45</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">5. 黑椒豚肉</div>
+            <div class="english">Black Papper Pork</div>
+            <div class="price">$45</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">6. 花枝蝦餅</div>
+            <div class="english">Fried Squid Shrimp Cake</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">7. 腐皮蝦卷</div>
+            <div class="english">Fried Prawn Beancurd Roll</div>
+        </div>
+    </div>
 
-        searchInput.addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.item').forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(term) ? 'flex' : 'none';
-            });
-        });
-    </script>
+    <div class="menu-section">
+        <h2>出前一丁類 Instant Noodle</h2>
+        <div class="menu-item">
+            <div class="chinese">芝士咖喱兔治豬肉撈出前一丁</div>
+            <div class="english">Cheese Curry Minced Pork with Instant Noodle</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士雞翼撈出前一丁</div>
+            <div class="english">Cheese Sauce Instant Noodle with Chicken Wings</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士雞扒撈出前一丁</div>
+            <div class="english">Cheese Sauce Instant Noodle with Chicken Steak</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">辣鱼配太陽蛋出前一丁</div>
+            <div class="english">Spicy Fish and Egg with Instant Noodle</div>
+        </div>
+    </div>
 
+    <div class="menu-section">
+        <h2>辛辣麵類 Spicy Shin Noodle</h2>
+        <div class="menu-item">
+            <div class="chinese">芝士辛辣麵配雞中翼</div>
+            <div class="english">Cheese spicy noodles with chicken wings</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士辛辣麵配餐肉蛋</div>
+            <div class="english">Cheese spicy noodles with luncheon meat and egg</div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>意大利薄饼 PIZZA</h2>
+        <div class="menu-item">
+            <div class="chinese">夏威夷PIZZA</div>
+            <div class="english">Hawaiian Pizza</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">香拿魚PIZZA</div>
+            <div class="english">Tuna Pizza</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">烤雞PIZZA</div>
+            <div class="english">Grilled Chicken Pizza</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">麻辣烤雞PIZZA</div>
+            <div class="english">Sichuan Spicy Grilled Chicken Pizza</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">煙三文魚PIZZA</div>
+            <div class="english">Smoked Salmon Pizza</div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>墨西哥卷 Wrap</h2>
+        <div class="menu-item">
+            <div class="chinese">雞肉墨西哥卷(可加辣)</div>
+            <div class="english">Chicken Wrap</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">辣味豚肉墨西哥卷</div>
+            <div class="english">Spicy Stir-Fried Sliced Pork Wrap</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">煙三文魚配牛油果墨西哥卷</div>
+            <div class="english">Smoked Salmon and Avocado Wrap</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">咖喱兔治豬肉墨西哥卷</div>
+            <div class="english">Curry Mined Pork Warp</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">泡菜豚肉墨西哥卷</div>
+            <div class="english">Kimchi Stir-Fried Sliced Pork warp</div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>猪仔包 Bun</h2>
+        <div class="menu-item">
+            <div class="chinese">芝士辣魚豬仔包</div>
+            <div class="english">Cheese And Spicy Fish Bun</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">芝士吞拿魚豬仔包</div>
+            <div class="english">Cheese And Tuna Bun</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">雞扒沙津醬豬仔包</div>
+            <div class="english">Chicken Steak Bun</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">豬扒沙津醬豬仔包</div>
+            <div class="english">Pork Chop Bun</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">(黑椒/咖喱)豚肉豬仔包</div>
+            <div class="english">Black Pepper / Curry Sliced Pork Bun</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">蒜蓉豬仔包</div>
+            <div class="english">Garlic Bun</div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>飲品 Drinks</h2>
+        <div class="menu-item">
+            <div class="chinese">橙美式(凍)</div>
+            <div class="english">Orange Americano</div>
+            <div class="price">$18</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">摩卡咖啡</div>
+            <div class="english">Mocha Coffee</div>
+            <div class="price">$20</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">生椰拿鐵(凍)</div>
+            <div class="english">Iced Raw Coconut Latte</div>
+            <div class="price">$25</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">焦糖咖啡</div>
+            <div class="english">Iced Caramel Macchiato</div>
+            <div class="price">$20</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">抹茶拿鐵</div>
+            <div class="english">Matcha Latte</div>
+            <div class="price">$20</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">泰式奶茶</div>
+            <div class="english">Thai Milk Tea</div>
+            <div class="price">$20</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">奶茶</div>
+            <div class="english">Mike Tea</div>
+            <div class="price">$16</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">朱古力</div>
+            <div class="english">Chocolate Mike</div>
+            <div class="price">$18</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">阿華田</div>
+            <div class="english">Ovaltine</div>
+            <div class="price">$15</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">柚子茶</div>
+            <div class="english">Citron Tea</div>
+            <div class="price">$15</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">柚子梳打(凍)</div>
+            <div class="english">Iced Citron Sode</div>
+            <div class="price">$20</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">薑茶</div>
+            <div class="english">Hot Ginger Tea</div>
+            <div class="price">$14</div>
+        </div>
+        
+        <h3>養生飲品 Healthy Drinks</h3>
+        <div class="menu-item">
+            <div class="chinese">羅漢果水</div>
+            <div class="english">Grosvenor Momordica Tea</div>
+            <div class="price">$10</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">檸檬薑米水</div>
+            <div class="english">Lemon Barley Water</div>
+            <div class="price">$12</div>
+        </div>
+        <div class="menu-item">
+            <div class="chinese">紫背天癸</div>
+            <div class="english">Fimbristipula tlance drink</div>
+            <div class="price">$15</div>
+        </div>
+    </div>
+
+    <div class="add-ons">
+        <h3>追加選項 Add-ons</h3>
+        <p>加炒雙蛋 $10 | 加太陽蛋 $4 | 加芝士 $6 | 白飯加底 $3 | 讚岐烏冬加底 $8 | 出前一丁加底 $8</p>
+    </div>
+
+    <div class="contact">
+        <p>地址: 水字巷61號永利大廈地下B铺</p>
+        <p>電話: 6388 0338 (歡迎外賣自取)</p>
+    </div>
 </body>
 </html>
