@@ -17,7 +17,7 @@ class _XiaoChuAppState extends State<XiaoChuApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _isEnglish ? 'Xiao Chu Takeaway' : '初見小廚外賣',
+      title: _isEnglish ? 'Xiao Chu Takeaway' : '小廚外賣',
       theme: ThemeData(primarySwatch: Colors.teal),
       home: MenuScreen(
         isEnglish: _isEnglish,
@@ -329,7 +329,7 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const Text('初見小廚', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+            const Text('小廚 Xiao Chu', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             const Text('地址：澳門司打口水字巷61號永利大廈地下B鋪'),
             const Text('外賣電話：6388 0338'),
