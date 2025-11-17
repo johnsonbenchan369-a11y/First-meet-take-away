@@ -1,94 +1,161 @@
-// main.dart
+// lib/main.dart
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const XiaoChuApp());
-}
+void main() => runApp(const ChuKinApp());
 
-class XiaoChuApp extends StatefulWidget {
-  const XiaoChuApp({super.key});
+class ChuKinApp extends StatefulWidget {
+  const ChuKinApp({super.key});
   @override
-  State<XiaoChuApp> createState() => _XiaoChuAppState();
+  State<ChuKinApp> createState() => _ChuKinAppState();
 }
 
-class _XiaoChuAppState extends State<XiaoChuApp> {
-  bool _isEnglish = false;
+class _ChuKinAppState extends State<ChuKinApp> {
+  bool isEnglish = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _isEnglish ? 'Xiao Chu Takeaway' : '小廚外賣',
-      theme: ThemeData(primarySwatch: Colors.teal),
-      home: MenuScreen(
-        isEnglish: _isEnglish,
-        toggleLang: () => setState(() => _isEnglish = !_isEnglish),
-      ),
+      debugShowCheckedModeBanner: false,
+      title: isEnglish ? "Chu Kin Takeaway" : "初見小廚外賣",
+      theme: ThemeData(primarySwatch: Colors.teal, fontFamily: "NotoSansHK"),
+      home: MenuScreen(isEnglish: isEnglish, toggleLang: () => setState(() => isEnglish = !isEnglish)),
     );
   }
 }
 
-// ========================================
-// 菜單資料 (直接從你提供的餐牌整理)
-// ========================================
-final Map<String, List<Map<String, dynamic>>> menuData = {
+/* ============================= 100% 準確菜單資料 ============================= */
+final Map<String, List<Map<String, dynamic>>> menu = {
   "飯類 Rice": [
-    {"zh": "滑蛋雞柳飯(可加辣)", "en": "Fried Egg Chicken Fillet Rice", "price": 38},
-    {"zh": "滑蛋浦燒鰻魚飯", "en": "Fried Egg Eel Rice", "price": 53},
-    {"zh": "特盛浦燒鰻魚飯", "en": "Large Kabayaki Eel Rice", "price": 78},
-    {"zh": "豚肉丼飯(配太陽蛋)", "en": "Pork Rice Bowl w/ Egg", "price": 45},
-    {"zh": "麻辣豚肉丼飯", "en": "Sichuan Spicy Pork Rice Bowl", "price": 45},
-    {"zh": "咖喱/蕃茄豚肉丼飯", "en": "Curry/Tomato Pork Rice Bowl", "price": 45},
-    {"zh": "泡菜辣炒豚肉飯", "en": "Kimchi Spicy Pork Rice", "price": 48},
-    {"zh": "黑松露滑蛋蝦仁飯", "en": "Black Truffle Shrimp Rice", "price": 46},
-    {"zh": "咖喱炸雞飯", "en": "Curry Fried Chicken Rice", "price": 42},
-    {"zh": "咖喱吉列蠔飯", "en": "Curry Oyster Rice", "price": 56},
-    {"zh": "白汁香草煎雞飯", "en": "Cream Herb Chicken Rice", "price": 43},
-    {"zh": "照燒香煎蠔配豚肉飯", "en": "Teriyaki Oyster & Pork Rice", "price": 63},
+    {"zh": "滑蛋雞柳飯(可加辣)", "en": "Fried Egg and Chicken Fillet With Rice", "price": 38},
+    {"zh": "滑蛋浦燒鰻魚飯", "en": "Fried Egg and EEL with Rice", "price": 53},
+    {"zh": "特盛浦燒鰻魚飯", "en": "Large Kabayaki EEL with Rice", "price": 78},
+    {"zh": "豚肉丼飯(配太陽蛋)", "en": "Pork Rice Bowl With Egg", "price": 45},
+    {"zh": "麻辣豚肉丼飯(配太陽蛋)", "en": "Sichuan Spicy Pork Rice Bowl With Egg", "price": 45},
+    {"zh": "(咖喱/蕃茄)豚肉丼飯(配太陽蛋)", "en": "(Curry/Tomato) Pork Rice Bowl with Egg", "price": 45},
+    {"zh": "泡菜辣炒豚肉飯", "en": "Spicy Kimchi Stir-Fried Sliced Pork With Rice", "price": 48},
+    {"zh": "(咖喱/蕃茄)免治豬肉煎蛋飯", "en": "(Curry/Tomato) Minced Pork With Fried Egg Rice", "price": 45},
+    {"zh": "黑松露滑蛋蝦仁飯", "en": "Black Truffle Scrambled Egg and Shrimp Rice", "price": 46},
+    {"zh": "滑蛋吉列豬扒飯", "en": "Scrambled Egg Pork Cutlet With Rice", "price": 45},
+    {"zh": "咖哩炸雞飯", "en": "Curry Fried Chicken With Rice", "price": 42},
+    {"zh": "咖哩吉列豬扒飯", "en": "Curry Pork Cutlet With Rice", "price": 43},
+    {"zh": "咖喱吉列蠔飯", "en": "Curry Oyster With Rice", "price": 56},
+    {"zh": "(咖喱/粟米)石斑魚飯", "en": "Curry/Corn Sauce Grouper Cutlet With Rice", "price": 46},
+    {"zh": "白汁香草煎雞飯", "en": "Cream Sauce Pan Fried Chicken Fillet With Rice", "price": 43},
+    {"zh": "(咖喱/白汁/粟米)雞翼飯", "en": "(Curry/Cream/Corn) Chicken Wings With Rice", "price": 40},
+    {"zh": "(咖喱/白汁/粟米)雞扒飯", "en": "(Curry/Cream/Corn) Chicken Steak With Rice", "price": 40},
+    {"zh": "照燒香煎蠔配豚肉飯", "en": "Teriyaki Oyster & Sliced Pork With Rice", "price": 63},
   ],
-  "烏冬 Udon": [
-    {"zh": "咖喱炸雞烏冬", "en": "Curry Fried Chicken Udon", "price": 44},
-    {"zh": "咖喱吉列豬扒烏冬", "en": "Curry Pork Cutlet Udon", "price": 46},
-    {"zh": "咖喱石斑魚烏冬", "en": "Curry Grouper Udon", "price": 49},
-    {"zh": "咖喱吉列蠔烏冬", "en": "Curry Oyster Udon", "price": 60},
+  "烏冬類 (讚岐烏冬) Udon": [
+    {"zh": "咖哩炸雞烏冬", "en": "Curry Fried Chicken With Udon", "price": 44},
+    {"zh": "咖哩吉列豬扒烏冬", "en": "Curry Pork Cutlet With Udon", "price": 46},
+    {"zh": "咖喱石斑魚烏冬", "en": "Curry Grouper Cutlet With Udon", "price": 49},
+    {"zh": "咖喱吉列蠔烏冬", "en": "Curry Oyster With Udon", "price": 60},
+    {"zh": "(咖喱/白汁/燒汁)雞扒烏冬", "en": "(Curry/Cream/Brown) Chicken Steak Udon", "price": 42},
+    {"zh": "(咖喱/白汁/燒汁)雞翼烏冬", "en": "(Curry/Cream/Brown) Chicken Wings Udon", "price": 42},
   ],
-  "焗飯 Baked Rice": [
-    {"zh": "芝士焗白汁雞皇飯", "en": "Cheese Baked Chicken Rice", "price": 48},
-    {"zh": "芝士焗煙三文魚牛油果飯", "en": "Cheese Baked Salmon Avocado Rice", "price": 59},
+  "焗飯類 Baked Rice": [
+    {"zh": "芝士焗白汁雞皇飯", "en": "Cheese Baked Chicken A La King Rice", "price": 48},
+    {"zh": "芝士焗白汁石斑魚飯", "en": "Cheese Baked Grouper Cutlet With Rice", "price": 56},
+    {"zh": "芝士焗煙三文魚牛油果飯", "en": "Cheese Baked Smoked Salmon & Avocado Rice", "price": 59},
+    {"zh": "芝士焗(咖喱/蕃茄)免治豬肉飯", "en": "Cheese Baked (Curry/Tomato) Minced Pork Rice", "price": 50},
+    {"zh": "芝士焗白汁煙三文魚吞拿魚飯", "en": "Cheese Baked Smoked Salmon & Tuna Rice", "price": 59},
   ],
-  "意粉 Spaghetti": [
-    {"zh": "特濃番茄雞肉炒意粉", "en": "Tomato Chicken Spaghetti", "price": 46},
-    {"zh": "白汁煙三文魚吞拿魚意粉", "en": "Cream Salmon Tuna Spaghetti", "price": 56},
-    {"zh": "蒜香帶子蝦仁炒意粉", "en": "Garlic Scallop Shrimp Spaghetti", "price": 60},
+  "蕃茄濃湯讚岐烏冬 Tomato Soup Udon": [
+    {"zh": "番茄濃湯配讚岐烏冬 (7選1)", "en": "Tomato Soup Udon + 1 Topping", "price": 40},
+    {"zh": "1. 墨魚丸 / 2. 厚切餐肉蛋(+炒雙蛋+$5) / 3. 日式炸餃子(4件) / 4. 雞中翼(4隻) / 5. 黑椒豚肉 / 6. 花枝蝦餅 / 7. 腐皮蝦卷", "en": "See options above", "price": 0},
   ],
-  "薄餅 PIZZA": [
-    {"zh": "夏威夷PIZZA (10吋/12吋)", "en": "Hawaiian Pizza", "price": "78/98"},
-    {"zh": "吞拿魚PIZZA", "en": "Tuna Pizza", "price": "88/108"},
-    {"zh": "麻辣烤雞PIZZA", "en": "Spicy Grilled Chicken Pizza", "price": "98/118"},
-    {"zh": "煙三文魚PIZZA", "en": "Smoked Salmon Pizza", "price": "118/138"},
+  "出前一丁類 Instant Noodle": [
+    {"zh": "芝士咖喱免治豬肉撈出前一丁", "en": "Cheese Curry Minced Pork Instant Noodle", "price": 48},
+    {"zh": "芝士雞翼撈出前一丁", "en": "Cheese Chicken Wings Instant Noodle", "price": 45},
+    {"zh": "芝士雞扒撈出前一丁", "en": "Cheese Chicken Steak Instant Noodle", "price": 45},
+    {"zh": "辣魚配太陽蛋出前一丁", "en": "Spicy Fish & Sunny Egg Instant Noodle", "price": 38},
+  ],
+  "辛辣麵類 Spicy Shin Noodle": [
+    {"zh": "芝士辛辣麵配雞中翼", "en": "Cheese Spicy Noodle with Chicken Wings", "price": 45},
+    {"zh": "芝士辛辣麵配餐肉蛋", "en": "Cheese Spicy Noodle with Luncheon Meat & Egg", "price": 43},
+  ],
+  "各式意粉 Spaghetti": [
+    {"zh": "特濃番茄雞肉炒意粉", "en": "Tomato Chicken Spaghetti Stir-Fry", "price": 46},
+    {"zh": "白汁煙三文魚吞拿魚炒意粉", "en": "Cream Smoked Salmon & Tuna Spaghetti", "price": 56},
+    {"zh": "吉列蠔配蒜香炒意粉", "en": "Oyster Cutlet Garlic Spaghetti", "price": 56},
+    {"zh": "芝士焗番茄免治豬肉意粉", "en": "Cheese Baked Tomato Minced Pork Spaghetti", "price": 56},
+    {"zh": "芝士焗咖喱免治豬肉意粉", "en": "Cheese Baked Curry Minced Pork Spaghetti", "price": 56},
+    {"zh": "芝士焗白汁煙三文魚吞拿魚意粉", "en": "Cheese Baked Smoked Salmon & Tuna Spaghetti", "price": 62},
+    {"zh": "蒜香帶子蝦仁炒意粉", "en": "Garlic Scallop & Shrimp Spaghetti", "price": 60},
+  ],
+  "意大利薄餅 PIZZA": [
+    {"zh": "夏威夷PIZZA", "en": "Hawaiian Pizza", "price": "78 (10吋) / 98 (12吋)"},
+    {"zh": "吞拿魚PIZZA", "en": "Tuna Pizza", "price": "88 / 108"},
+    {"zh": "烤雞PIZZA", "en": "Grilled Chicken Pizza", "price": "96 / 116"},
+    {"zh": "麻辣烤雞PIZZA", "en": "Sichuan Spicy Chicken Pizza", "price": "98 / 118"},
+    {"zh": "煙三文魚PIZZA", "en": "Smoked Salmon Pizza", "price": "118 / 138"},
+  ],
+  "墨西哥卷 Wrap": [
+    {"zh": "雞肉墨西哥卷(可加辣)", "en": "Chicken Wrap", "price": 32},
+    {"zh": "辣味豚肉墨西哥卷", "en": "Spicy Pork Wrap", "price": 35},
+    {"zh": "煙三文魚配牛油果墨西哥卷", "en": "Smoked Salmon Avocado Wrap", "price": 43},
+    {"zh": "咖喱免治豬肉墨西哥卷", "en": "Curry Minced Pork Wrap", "price": 35},
+    {"zh": "泡菜豚肉墨西哥卷", "en": "Kimchi Pork Wrap", "price": 38},
+  ],
+  "豬仔包 Bun": [
+    {"zh": "芝士辣魚豬仔包", "en": "Cheese & Spicy Fish Bun", "price": 28},
+    {"zh": "芝士吞拿魚豬仔包", "en": "Cheese & Tuna Bun", "price": 28},
+    {"zh": "雞扒沙津醬豬仔包", "en": "Chicken Steak Bun", "price": 26},
+    {"zh": "豬扒沙津醬豬仔包", "en": "Pork Chop Bun", "price": 26},
+    {"zh": "(黑椒/咖喱)豚肉豬仔包", "en": "(Black Pepper/Curry) Pork Bun", "price": 30},
+    {"zh": "蒜蓉豬仔包", "en": "Garlic Bun", "price": 18},
   ],
   "小食 Snacks": [
     {"zh": "招牌鹽酥雞(可加辣)", "en": "Signature Popcorn Chicken", "price": 30},
-    {"zh": "炸雞中翼 4隻/6隻", "en": "Fried Chicken Wings", "price": "28/38"},
-    {"zh": "唐揚炸雞 (6件)", "en": "Japanese Karaage Chicken", "price": 42},
-    {"zh": "炸吉列蠔 (4件)", "en": "Fried Oysters", "price": 48},
+    {"zh": "唐揚炸雞 (6件)", "en": "Karaage Chicken (6pcs)", "price": 42},
+    {"zh": "炸雞中翼 (4隻/6隻)", "en": "Fried Chicken Wings", "price": "28/38"},
+    {"zh": "香草雞翼 (4隻/6隻)", "en": "Herb Chicken Wings", "price": "32/42"},
+    {"zh": "蒜香雞翼 (4隻/6隻)", "en": "Garlic Chicken Wings", "price": "32/42"},
+    {"zh": "花椒雞翼 (4隻/6隻)", "en": "Sichuan Pepper Wings", "price": "32/42"},
+    {"zh": "炸花枝蝦餅 (2件)", "en": "Squid Shrimp Cake (2pcs)", "price": 28},
+    {"zh": "炸腐皮蝦卷 (4件)", "en": "Prawn Beancurd Roll (4pcs)", "price": 28},
+    {"zh": "麦樂雞 (6件/8件)", "en": "Chicken Nuggets", "price": "23/28"},
+    {"zh": "日式炸餃子 (6件/8件)", "en": "Japanese Gyoza", "price": "28/36"},
+    {"zh": "炸粗薯條/炸薯角", "en": "Fries / Potato Wedges", "price": 18},
+    {"zh": "炸薯格", "en": "Crisscut Fries", "price": 22},
+    {"zh": "炸薯餅 (2pcs)", "en": "Hash Brown (2pcs)", "price": 18},
+    {"zh": "咖喱烤雞串 (3串)", "en": "Curry Grilled Chicken Skewers", "price": 45},
+    {"zh": "炸馬介休球 (4pcs/6pcs)", "en": "Cod Fish Balls", "price": "33/45"},
+    {"zh": "炸吉列蠔 (4件)", "en": "Fried Oysters (4pcs)", "price": 48},
     {"zh": "炸物拼盤", "en": "Fried Platter", "price": 108},
   ],
-  "飲品 Drinks": [
-    {"zh": "熱/凍 即磨咖啡", "en": "Hot/Iced Fresh Coffee", "price": "13/15"},
-    {"zh": "400次手打鮮奶咖啡", "en": "Dalgona Coffee", "price": 25},
-    {"zh": "生椰拿鐵", "en": "Coconut Latte", "price": 25},
-    {"zh": "泰式奶茶", "en": "Thai Milk Tea", "price": "18/20"},
+  "蔬菜類 Vegetables": [
+    {"zh": "芝士白汁焗西蘭花", "en": "Cheese Baked Broccoli", "price": 42},
+    {"zh": "蒜蓉炒娃娃菜", "en": "Stir-fry Baby Cabbage with Garlic", "price": 38},
+    {"zh": "蒜蓉炒西蘭花", "en": "Stir-fry Broccoli with Garlic", "price": 38},
+  ],
+  "各式飲品 Drinks": [
+    {"zh": "即磨咖啡", "en": "Fresh Ground Coffee", "price": "熱13 / 凍15"},
+    {"zh": "400次手打鮮奶咖啡", "en": "Dalgona Coffee", "price": "凍25"},
+    {"zh": "橙美式(凍)", "en": "Orange Americano", "price": "凍23"},
+    {"zh": "摩卡咖啡", "en": "Mocha", "price": "18/20"},
+    {"zh": "生椰拿鐵(凍)", "en": "Raw Coconut Latte", "price": "凍25"},
+    {"zh": "焦糖瑪奇朵", "en": "Caramel Macchiato", "price": "18/20"},
     {"zh": "抹茶拿鐵", "en": "Matcha Latte", "price": "18/20"},
+    {"zh": "泰式奶茶", "en": "Thai Milk Tea", "price": "18/20"},
+    {"zh": "奶茶", "en": "Milk Tea", "price": "14/16"},
+    {"zh": "朱古力", "en": "Hot Chocolate", "price": "16/18"},
+    {"zh": "阿華田", "en": "Ovaltine", "price": "13/15"},
+    {"zh": "柚子茶", "en": "Yuzu Tea", "price": "13/15"},
+    {"zh": "柚子梳打(凍)", "en": "Yuzu Soda", "price": "凍20"},
+    {"zh": "薑茶", "en": "Ginger Tea", "price": "熱14"},
+  ],
+  "養生飲品 Healthy Drinks": [
+    {"zh": "羅漢果水", "en": "Monk Fruit Tea", "price": 10},
+    {"zh": "檸檬薏米水", "en": "Lemon Barley", "price": 12},
+    {"zh": "紫背天葵", "en": "Gynura Bicolor Drink", "price": 15},
   ],
 };
 
-// ========================================
-// 主畫面
-// ========================================
+/* ============================= 主畫面 ============================= */
 class MenuScreen extends StatefulWidget {
   final bool isEnglish;
   final VoidCallback toggleLang;
-
   const MenuScreen({required this.isEnglish, required this.toggleLang, super.key});
 
   @override
@@ -96,163 +163,94 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final Map<String, int> _cart = {}; // key: "分類|名稱" , value: 數量
+  final Map<String, int> cart = {};
+
+  double get total => _calcTotal();
+  int get itemCount => cart.values.fold(0, (a, b) => a + b);
+
+  double _calcTotal() {
+    double sum = 0;
+    cart.forEach((key, qty) {
+      final parts = key.split('|');
+      final cat = parts[0];
+      final zh = parts[1];
+      final item = menu[cat]!.firstWhere((e) => e["zh"] == zh);
+      dynamic p = item["price"];
+      if (p is String && p.contains('/')) p = int.parse(p.split('/')[0]);
+      sum += p * qty;
+    });
+    return sum;
+  }
 
   @override
   Widget build(BuildContext context) {
-    int totalItems = _cart.values.fold(0, (a, b) => a + b);
-    double totalPrice = _calculateTotal();
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isEnglish ? 'Xiao Chu Takeaway' : '小廚外賣'),
+        title: Text(widget.isEnglish ? "Chu Kin Takeaway" : "初見小廚外賣"),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.language),
-            onPressed: widget.toggleLang,
-          ),
+          IconButton(icon: const Icon(Icons.language), onPressed: widget.toggleLang),
           Stack(
             children: [
               IconButton(
                 icon: const Icon(Icons.shopping_cart),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CartScreen(cart: _cart, isEnglish: widget.isEnglish),
-                  ),
-                ),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CartScreen(cart: cart, isEnglish: widget.isEnglish))),
               ),
-              if (totalItems > 0)
-                Positioned(
-                  right: 8,
-                  top: 8,
-                  child: CircleAvatar(
-                    radius: 10,
-                    backgroundColor: Colors.red,
-                    child: Text('$totalItems', style: const TextStyle(fontSize: 12)),
-                  ),
-                ),
+              if (itemCount > 0)
+                Positioned(right: 8, top: 8, child: CircleAvatar(radius: 10, backgroundColor: Colors.red, child: Text('$itemCount', style: const TextStyle(fontSize: 12, color: Colors.white)))),
             ],
-          ),
+          )
         ],
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
-        itemCount: menuData.keys.length,
-        itemBuilder: (context, index) {
-          String category = menuData.keys.elementAt(index);
-          return CategorySection(
-            category: category,
-            items: menuData[category]!,
-            isEnglish: widget.isEnglish,
-            cart: _cart,
-            onUpdate: () => setState(() {}),
-          );
+        itemCount: menu.keys.length,
+        itemBuilder: (_, i) {
+          final cat = menu.keys.elementAt(i);
+          return CategoryCard(category: cat, items: menu[cat]!, isEnglish: widget.isEnglish, cart: cart, onChange: () => setState(() {}));
         },
       ),
-      floatingActionButton: totalItems > 0
+      floatingActionButton: itemCount > 0
           ? FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CheckoutScreen(
-                      cart: _cart,
-                      totalPrice: totalPrice,
-                      isEnglish: widget.isEnglish,
-                    ),
-                  ),
-                );
-              },
-              label: Text(widget.isEnglish
-                  ? 'Checkout \$${totalPrice.toStringAsFixed(0)}'
-                  : '結帳 \$${totalPrice.toStringAsFixed(0)}'),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CheckoutScreen(cart: cart, total: total, isEnglish: widget.isEnglish))),
+              label: Text(widget.isEnglish ? "Checkout \$${total.toStringAsFixed(0)}" : "結帳 \$${total.toStringAsFixed(0)}"),
               icon: const Icon(Icons.payment),
             )
           : null,
     );
   }
-
-  double _calculateTotal() {
-    double sum = 0;
-    _cart.forEach((key, qty) {
-      final parts = key.split('|');
-      final category = parts[0];
-      final nameZh = parts[1];
-      final item = menuData[category]!
-          .firstWhere((e) => e['zh'] == nameZh, orElse: () => {"price": 0});
-      var price = item['price'];
-      if (price is String && price.contains('/')) {
-        price = int.parse(price.split('/').first);
-      }
-      sum += (price as num) * qty;
-    });
-    return sum;
-  }
 }
 
-// ========================================
-// 每個分類區塊
-// ========================================
-class CategorySection extends StatelessWidget {
+/* ============================= 分類卡片 ============================= */
+class CategoryCard extends StatelessWidget {
   final String category;
   final List<Map<String, dynamic>> items;
   final bool isEnglish;
   final Map<String, int> cart;
-  final VoidCallback onUpdate;
+  final VoidCallback onChange;
 
-  const CategorySection({
-    required this.category,
-    required this.items,
-    required this.isEnglish,
-    required this.cart,
-    required this.onUpdate,
-    super.key,
-  });
+  const CategoryCard({required this.category, required this.items, required this.isEnglish, required this.cart, required this.onChange, super.key});
 
   @override
   Widget build(BuildContext context) {
-    String title = isEnglish
-        ? category.split(' ').last
-        : category.split(' ').first;
+    String title = isEnglish ? category.split(" ").last : category.split(" ").first;
 
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 6),
       child: ExpansionTile(
-        title: Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.teal)),
         children: items.map((item) {
-          String key = '$category|${item['zh']}';
-          int qty = cart[key] ?? 0;
+          final key = "$category|${item['zh']}";
+          final qty = cart[key] ?? 0;
 
           return ListTile(
-            title: Text(isEnglish ? item['en'] : item['zh']),
-            subtitle: Text(
-              item['price'] is String
-                  ? 'MOP ${item['price']}'
-                  : 'MOP ${item['price']}',
-              style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-            ),
+            title: Text(isEnglish ? item['en'] : item['zh'], style: const TextStyle(fontSize: 16)),
+            subtitle: Text("MOP ${item['price']}", style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.remove_circle_outline),
-                  onPressed: qty <= 0
-                      ? null
-                      : () {
-                          cart[key] = qty - 1;
-                          if (cart[key] == 0) cart.remove(key);
-                          onUpdate();
-                        },
-                ),
-                Text('$qty', style: const TextStyle(fontSize: 18)),
-                IconButton(
-                  icon: const Icon(Icons.add_circle_outline),
-                  onPressed: () {
-                    cart[key] = qty + 1;
-                    onUpdate();
-                  },
-                ),
+                IconButton(icon: const Icon(Icons.remove_circle_outline), onPressed: qty <= 0 ? null : () { cart[key] = qty - 1; if (qty - 1 == 0) cart.remove(key); onChange(); }),
+                Text("$qty", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                IconButton(icon: const Icon(Icons.add_circle_outline), color: Colors.teal, onPressed: () { cart[key] = qty + 1; onChange(); }),
               ],
             ),
           );
@@ -262,109 +260,76 @@ class CategorySection extends StatelessWidget {
   }
 }
 
-// ========================================
-// 購物車頁面
-// ========================================
+/* ============================= 購物車頁面 ============================= */
 class CartScreen extends StatelessWidget {
   final Map<String, int> cart;
   final bool isEnglish;
-
   const CartScreen({required this.cart, required this.isEnglish, super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (cart.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(title: Text(isEnglish ? 'Cart' : '購物車')),
-        body: Center(child: Text(isEnglish ? 'Cart is empty' : '購物車是空的')),
-      );
-    }
+    if (cart.isEmpty) return Scaffold(appBar: AppBar(title: Text(isEnglish ? "Cart" : "購物車")), body: const Center(child: Text("購物車是空的")));
 
     return Scaffold(
-      appBar: AppBar(title: Text(isEnglish ? 'Cart' : '購物車')),
+      appBar: AppBar(title: Text(isEnglish ? "Cart" : "購物車")),
       body: ListView.builder(
+        padding: const EdgeInsets.all(12),
         itemCount: cart.length,
-        itemBuilder: (context, i) {
+        itemBuilder: (_, i) {
           final key = cart.keys.elementAt(i);
-          final qty = cart.values.elementAt(i);
+          final qty = cart[key]!;
           final parts = key.split('|');
-          final category = parts[0];
-          final zh = parts[1];
-          final item = menuData[category]!.firstWhere((e) => e['zh'] == zh);
-          final price = item['price'] is String && item['price'].contains('/')
-              ? int.parse(item['price'].split('/').first)
-              : item['price'] as int;
-
-          return ListTile(
-            title: Text(isEnglish ? item['en'] : item['zh']),
-            subtitle: Text('MOP $price × $qty = MOP ${price * qty}'),
-            trailing: Text('×$qty'),
-          );
+          final item = menu[parts[0]]!.firstWhere((e) => e['zh'] == parts[1]);
+          final price = item['price'] is String && item['price'].toString().contains('/') ? int.parse(item['price'].toString().split('/')[0]) : item['price'];
+          return ListTile(title: Text(isEnglish ? item['en'] : item['zh']), trailing: Text("×$qty   MOP ${price * qty}"));
         },
       ),
     );
   }
 }
 
-// ========================================
-// 結帳頁面（模擬下單）
-// ========================================
+/* ============================= 結帳頁面 ============================= */
 class CheckoutScreen extends StatelessWidget {
   final Map<String, int> cart;
-  final double totalPrice;
+  final double total;
   final bool isEnglish;
-
-  const CheckoutScreen({
-    required this.cart,
-    required this.totalPrice,
-    required this.isEnglish,
-    super.key,
-  });
+  const CheckoutScreen({required this.cart, required this.total, required this.isEnglish, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(isEnglish ? 'Checkout' : '結帳')),
+      appBar: AppBar(title: Text(isEnglish ? "Checkout" : "結帳")),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const Text('小廚 Xiao Chu', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            const Text('地址：澳門司打口水字巷61號永利大廈地下B鋪'),
-            const Text('外賣電話：6388 0338'),
+            const Text("初見小廚 Chu Kin", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            const Text("地址：澳門司打口水字巷61號永利大廈地下B鋪", style: TextStyle(fontSize: 16)),
+            const Text("外賣電話：6388 0338", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const Divider(height: 40),
             Expanded(
               child: ListView.builder(
                 itemCount: cart.length,
-                itemBuilder: (c, i) {
+                itemBuilder: (_, i) {
                   final key = cart.keys.elementAt(i);
-                  final qty = cart.values.elementAt(i);
+                  final qty = cart[key]!;
                   final parts = key.split('|');
-                  final item = menuData[parts[0]]!.firstWhere((e) => e['zh'] == parts[1]);
-                  final price = item['price'] is String && item['price'].contains('/')
-                      ? int.parse(item['price'].split('/').first)
-                      : item['price'];
-                  return ListTile(
-                    title: Text(isEnglish ? item['en'] : item['zh']),
-                    trailing: Text('×$qty  MOP ${price * qty}'),
-                  );
+                  final item = menu[parts[0]]!.firstWhere((e) => e['zh'] == parts[1]);
+                  final price = item['price'] is String && item['price'].toString().contains('/') ? int.parse(item['price'].toString().split('/')[0]) : item['price'];
+                  return ListTile(title: Text(isEnglish ? "${item['en']} ×$qty" : "${item['zh']} ×$qty"), trailing: Text("MOP ${price * qty}"));
                 },
               ),
             ),
             const Divider(),
-            Text('總額：MOP ${totalPrice.toStringAsFixed(0)}',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text("總額：MOP ${total.toStringAsFixed(0)}", style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.red)),
             const SizedBox(height: 30),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 56)),
+              style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 60), backgroundColor: Colors.orange),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(isEnglish ? 'Order submitted! We will call you shortly.' : '訂單已提交！我們會盡快致電確認')),
-                );
-                Navigator.popUntil(context, (route) => route.isFirst);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(isEnglish ? "Order submitted! We will call you soon" : "訂單已提交！我們會即時打電話畀你確認")));
+                Navigator.popUntil(context, (r) => r.isFirst);
               },
-              child: Text(isEnglish ? 'Submit Order (Cash on delivery)' : '提交訂單（貨到付款）'),
+              child: Text(isEnglish ? "Submit Order (Cash on Delivery)" : "提交訂單（貨到付款）", style: const TextStyle(fontSize: 20)),
             ),
           ],
         ),
